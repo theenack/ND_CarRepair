@@ -18,7 +18,7 @@ Citizen.CreateThread(function()
 							hintToDisplay('Press ~INPUT_PICKUP~ to repair vehicle for $500')
 							if IsControlJustPressed(0, 38) then	
 								TriggerEvent('carfixstation:fixCar')	
-								TriggerEvent('CarRepair', true)					
+								TriggerServerEvent('CarRepair', true)					
 								SetPedCoordsKeepVehicle(playerPed, v.x, v.y, v.z)
 							end								
 						end
