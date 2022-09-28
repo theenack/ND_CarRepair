@@ -65,9 +65,16 @@ AddEventHandler('carfixstation:fixCar', function()
 	local playerPed = GetPlayerPed(-1)
 	local vehicle = GetVehiclePedIsIn(playerPed, false)
 	fixing = true
+	exports["ModernHUD"]:AndyyyNotify({
+		title = '<font color="#eb3434">Car Repair:</font>',
+		message = "Car Repair In Progress", -- add the message
+		icon = "fas fa-bullhorn", -- add the icon (icons can be found here: https://fontawesome.com/v5/search)
+		colorHex = "#eb3434", -- You can just search up color picker on google to find a color.
+		timeout = 8000 -- this will take 8 seconds until the notification disappears
+	})
 	TriggerEvent('carfixstation:markAnimation')	
 	FreezeEntityPosition(vehicle, true)
-	sendNotification('Repair in progress, please wait...', 'warning', Config.RepairTime-700)
+	--sendNotification('Repair in progress, please wait...', 'warning', Config.RepairTime-700)
 	if Config.EnableSoundEffect == true then
 		TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 5.0, 'car_repair', 0.7)
 	end
@@ -76,6 +83,13 @@ AddEventHandler('carfixstation:fixCar', function()
 	SetVehicleFixed(vehicle)
 	SetVehicleDeformationFixed(vehicle)
 	FreezeEntityPosition(vehicle, false)
+	exports["ModernHUD"]:AndyyyNotify({
+		title = '<font color="#34eb52">Car Repair:</font>',
+		message = "Car Repair Successful", -- add the message
+		icon = "fas fa-bullhorn", -- add the icon (icons can be found here: https://fontawesome.com/v5/search)
+		colorHex = "#34eb52", -- You can just search up color picker on google to find a color.
+		timeout = 8000 -- this will take 8 seconds until the notification disappears
+	})
 	zcoords, mcolor, turn = 0.0, 0, false
 end)
 
